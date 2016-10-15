@@ -98,3 +98,39 @@ dependencies {
     androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
 }
+
+task buckDeps(type: Copy) {
+    repositories {
+        maven {
+            url "file:///opt/android_sdk/extras/android/m2repository/"
+        }
+    }
+    def libsFolder = new File("app/libs/")
+    if (!libsFolder.exists()) {
+        libsFolder.mkdir();
+    }
+    new File(libsFolder, "BUCK").withWriter('UTF-8') { writer ->
+        configurations.compile.resolvedConfiguration.resolvedArtifacts.each {
+            artifact ->
+                if (artifact.extension.equals("aar")) {
+                    writer.write("""
+android_prebuilt_aar(
+  name = "${artifact.name}",
+  aar = "${artifact.file.name}",
+  visibility = [ 'PUBLIC' ],
+)
+""")
+
+                } else if (artifact.extension.equals("jar")) {
+                    writer.write("""
+prebuilt_jar(
+  name = "${artifact.name}",
+  binary_jar = "${artifact.file.name}",
+  visibility = [ 'PUBLIC' ],
+)
+""")
+                }
+                from artifact.file.absolutePath into "libs/"
+        }
+    };
+}
