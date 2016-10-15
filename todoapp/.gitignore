@@ -5,5 +5,9 @@ build
 .gradle
 # Eclipse project files
 .project
-.settings/	
+.settings/
 .classpath
+# Buck
+.keystore
+.buckd
+buck-out
