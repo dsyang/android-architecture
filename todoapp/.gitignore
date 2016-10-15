@@ -3,6 +3,7 @@
 local.properties
 build
 .gradle
+app/libs
 # Eclipse project files
 .project
 .settings/
