@@ -1,0 +1,26 @@
+android_manifest(
+  name = "manifest",
+  skeleton = "AndroidManifest.xml",
+  visibility = [ 'PUBLIC' ],
+)
+
+android_resource(
+  name = "res",
+  res = "res",
+  package = "com.example.android.architecture.blueprints.todoapp",
+  visibility = [ 'PUBLIC' ],
+  deps = [
+    "//app/libs:appcompat-v7",
+    "//app/libs:support-v4",
+    "//app/libs:design",
+    "//app/libs:cardview-v7",
+    "//app/libs:recyclerview-v7",
+    "//app/libs:support-vector-drawable",
+    "//app/libs:animated-vector-drawable",
+    "//app/libs:support-compat",
+    "//app/libs:support-core-ui",
+    "//app/libs:support-core-utils",
+    "//app/libs:support-media-compat",
+    "//app/libs:support-fragment",
+  ],
+)

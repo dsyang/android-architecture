@@ -1,0 +1,15 @@
+android_binary(
+  name = "app_debug",
+  manifest = "//app/src/main:manifest",
+  keystore = ":debug_keystore",
+  deps = [
+    "//app/src/main:res",
+    "//app/src/main/java/com/example/android/architecture/blueprints/todoapp:app",
+  ],
+)
+
+keystore(
+  name = "debug_keystore",
+  store = ".keystore/debug.keystore",
+  properties = ".keystore/debug.keystore.properties",
+)

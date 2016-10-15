@@ -1,0 +1,24 @@
+android_library(
+  name = "app",
+  srcs =
+    glob(['**/*.java']),
+  deps = [
+    "//app/src/main:res",
+    "//app/libs:support-annotations",
+    "//app/libs:appcompat-v7",
+    "//app/libs:support-v4",
+    "//app/libs:design",
+    "//app/libs:cardview-v7",
+    "//app/libs:recyclerview-v7",
+    "//app/libs:support-vector-drawable",
+    "//app/libs:animated-vector-drawable",
+    "//app/libs:support-compat",
+    "//app/libs:support-core-ui",
+    "//app/libs:support-core-utils",
+    "//app/libs:support-media-compat",
+    "//app/libs:support-fragment",
+    "//app/libs:guava",
+    "//app/libs:espresso-idling-resource",
+  ],
+  visibility = [ 'PUBLIC' ],
+)
