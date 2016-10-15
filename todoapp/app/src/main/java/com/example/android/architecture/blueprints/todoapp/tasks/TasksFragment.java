@@ -18,6 +18,7 @@ package com.example.android.architecture.blueprints.todoapp.tasks;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -161,16 +162,13 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_clear:
-                mPresenter.clearCompletedTasks();
-                break;
-            case R.id.menu_filter:
-                showFilteringPopUpMenu();
-                break;
-            case R.id.menu_refresh:
-                mPresenter.loadTasks(true);
-                break;
+        @IdRes int id =  item.getItemId();
+        if (id == R.id.menu_clear) {
+            mPresenter.clearCompletedTasks();
+        } else if (id == R.id.menu_filter) {
+            showFilteringPopUpMenu();
+        } else if (id == R.id.menu_refresh) {
+            mPresenter.loadTasks(true);
         }
         return true;
     }
@@ -187,16 +185,13 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.active:
-                        mPresenter.setFiltering(TasksFilterType.ACTIVE_TASKS);
-                        break;
-                    case R.id.completed:
-                        mPresenter.setFiltering(TasksFilterType.COMPLETED_TASKS);
-                        break;
-                    default:
-                        mPresenter.setFiltering(TasksFilterType.ALL_TASKS);
-                        break;
+                @IdRes int id = item.getItemId();
+                if (id == R.id.active) {
+                    mPresenter.setFiltering(TasksFilterType.ACTIVE_TASKS);
+                } else if (id == R.id.completed) {
+                    mPresenter.setFiltering(TasksFilterType.COMPLETED_TASKS);
+                } else {
+                    mPresenter.setFiltering(TasksFilterType.ALL_TASKS);
                 }
                 mPresenter.loadTasks(false);
                 return true;

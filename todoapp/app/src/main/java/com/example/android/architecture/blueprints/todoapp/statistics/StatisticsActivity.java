@@ -18,6 +18,7 @@ package com.example.android.architecture.blueprints.todoapp.statistics;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -88,19 +89,13 @@ public class StatisticsActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        switch (menuItem.getItemId()) {
-                            case R.id.list_navigation_menu_item:
-                                Intent intent =
-                                        new Intent(StatisticsActivity.this, TasksActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                break;
-                            case R.id.statistics_navigation_menu_item:
-                                // Do nothing, we're already on that screen
-                                break;
-                            default:
-                                break;
+                        @IdRes int id = menuItem.getItemId();
+                        if (id == R.id.list_navigation_menu_item) {
+                            Intent intent =
+                                new Intent(StatisticsActivity.this, TasksActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
                         }
                         // Close the navigation drawer when an item is selected.
                         menuItem.setChecked(true);
