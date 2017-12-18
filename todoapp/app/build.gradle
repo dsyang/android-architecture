@@ -106,4 +106,21 @@ dependencies {
     androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     androidTestCompile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     androidTestCompile "com.android.support:design:$rootProject.supportLibraryVersion"
+
+
+    // Litho
+    implementation "com.facebook.litho:litho-core:$rootProject.lithoVersion"
+    implementation "com.facebook.litho:litho-widget:$rootProject.lithoVersion"
+    compileOnly "com.facebook.litho:litho-annotations:$rootProject.lithoVersion"
+
+    annotationProcessor "com.facebook.litho:litho-processor:$rootProject.lithoVersion"
+
+    // SoLoader
+    implementation 'com.facebook.soloader:soloader:0.2.0'
+
+    // For integration with Fresco
+    implementation "com.facebook.litho:litho-fresco:$rootProject.lithoVersion"
+
+    // For testing
+    testImplementation "com.facebook.litho:litho-testing:$rootProject.lithoVersion"
 }
