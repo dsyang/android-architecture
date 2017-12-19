@@ -55,6 +55,17 @@ public class TasksSpec {
         @FromEvent int index,
         @FromEvent final Task model,
         @Prop final TasksFragment.TaskItemListener itemListener) {
+        if (index % 2 == 0) {
+            return ComponentRenderInfo.create()
+                .component(
+                    TaskItem.create(c)
+                        .task(model)
+                        .itemListener(itemListener)
+                        .build())
+                .build();
+        }
+
+
         return ViewRenderInfo.create()
             .viewCreator(TASK_ITEM_VIEW_CREATOR)
             .viewBinder(new SimpleViewBinder() {
