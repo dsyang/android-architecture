@@ -27,14 +27,6 @@ import java.util.List;
 @LayoutSpec
 public class TasksSpec {
 
-    private static final ViewCreator TASK_ITEM_VIEW_CREATOR = new ViewCreator() {
-        @Override
-        public View createView(Context c) {
-            LayoutInflater inflater = LayoutInflater.from(c);
-            return inflater.inflate(R.layout.task_item, null, false);
-        }
-    };
-
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
@@ -52,60 +44,14 @@ public class TasksSpec {
     @OnEvent(RenderEvent.class)
     static RenderInfo renderTask(
         final ComponentContext c,
-        @FromEvent int index,
         @FromEvent final Task model,
         @Prop final TasksFragment.TaskItemListener itemListener) {
-        if (index % 2 == 0) {
-            return ComponentRenderInfo.create()
-                .component(
-                    TaskItem.create(c)
-                        .task(model)
-                        .itemListener(itemListener)
-                        .build())
-                .build();
-        }
-
-
-        return ViewRenderInfo.create()
-            .viewCreator(TASK_ITEM_VIEW_CREATOR)
-            .viewBinder(new SimpleViewBinder() {
-
-                @Override
-                public void bind(View rowView) {
-                    TextView titleTV = (TextView) rowView.findViewById(R.id.title);
-                    titleTV.setText(model.getTitleForList());
-
-                    CheckBox completeCB = (CheckBox) rowView.findViewById(R.id.complete);
-
-                    // Active/completed task UI
-                    completeCB.setChecked(model.isCompleted());
-                    if (model.isCompleted()) {
-                        rowView.setBackgroundDrawable(
-                            c.getResources().getDrawable(R.drawable.list_completed_touch_feedback));
-                    } else {
-                        rowView.setBackgroundDrawable(
-                            c.getResources().getDrawable(R.drawable.touch_feedback));
-                    }
-
-                    completeCB.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!model.isCompleted()) {
-                                itemListener.onCompleteTaskClick(model);
-                            } else {
-                                itemListener.onActivateTaskClick(model);
-                            }
-                        }
-                    });
-
-                    rowView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            itemListener.onTaskClick(model);
-                        }
-                    });
-                }
-            })
+        return ComponentRenderInfo.create()
+            .component(
+                TaskItem.create(c)
+                    .task(model)
+                    .itemListener(itemListener)
+                    .build())
             .build();
     }
 }
