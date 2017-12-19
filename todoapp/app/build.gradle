@@ -123,4 +123,11 @@ dependencies {
 
     // For testing
     testImplementation "com.facebook.litho:litho-testing:$rootProject.lithoVersion"
+
+    // Sections
+    implementation "com.facebook.litho:litho-sections-core:$rootProject.lithoVersion"
+    implementation "com.facebook.litho:litho-sections-widget:$rootProject.lithoVersion"
+    compileOnly "com.facebook.litho:litho-sections-annotations:$rootProject.lithoVersion"
+
+    annotationProcessor "com.facebook.litho:litho-sections-processor:$rootProject.lithoVersion"
 }
