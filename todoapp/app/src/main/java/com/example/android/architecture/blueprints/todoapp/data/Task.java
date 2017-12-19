@@ -147,12 +147,13 @@ public final class Task {
         Task task = (Task) o;
         return Objects.equal(mId, task.mId) &&
                Objects.equal(mTitle, task.mTitle) &&
-               Objects.equal(mDescription, task.mDescription);
+               Objects.equal(mDescription, task.mDescription) &&
+               Objects.equal(mCompleted, task.mCompleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(mId, mTitle, mDescription);
+        return Objects.hashCode(mId, mTitle, mDescription, mCompleted);
     }
 
     @Override
