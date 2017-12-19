@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ListView
+            <com.facebook.litho.LithoView
                 android:id="@+id/tasks_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
