@@ -68,7 +68,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
     private LinearLayout mTasksView;
 
-    private TextView mFilteringLabelView;
+    private LithoView mFilteringLabelView;
 
     public TasksFragment() {
         // Requires empty public constructor
@@ -109,7 +109,7 @@ public class TasksFragment extends Fragment implements TasksContract.View {
         // Set up tasks view
         ListView listView = (ListView) root.findViewById(R.id.tasks_list);
         listView.setAdapter(mListAdapter);
-        mFilteringLabelView = (TextView) root.findViewById(R.id.filteringLabel);
+        mFilteringLabelView = (LithoView) root.findViewById(R.id.filteringLabel);
         mTasksView = (LinearLayout) root.findViewById(R.id.tasksLL);
 
         // Set up  no tasks view
@@ -295,17 +295,26 @@ public class TasksFragment extends Fragment implements TasksContract.View {
 
     @Override
     public void showActiveFilterLabel() {
-        mFilteringLabelView.setText(getResources().getString(R.string.label_active));
+        mFilteringLabelView.setComponent(
+            FilteringLabel.create(mFilteringLabelView.getComponentContext())
+                .labelRes(R.string.label_active)
+                .build());
     }
 
     @Override
     public void showCompletedFilterLabel() {
-        mFilteringLabelView.setText(getResources().getString(R.string.label_completed));
+        mFilteringLabelView.setComponent(
+            FilteringLabel.create(mFilteringLabelView.getComponentContext())
+                .labelRes(R.string.label_completed)
+                .build());
     }
 
     @Override
     public void showAllFilterLabel() {
-        mFilteringLabelView.setText(getResources().getString(R.string.label_all));
+        mFilteringLabelView.setComponent(
+            FilteringLabel.create(mFilteringLabelView.getComponentContext())
+                .labelRes(R.string.label_all)
+                .build());
     }
 
     @Override
