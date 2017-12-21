@@ -33,9 +33,6 @@ import com.example.android.architecture.blueprints.todoapp.R;
 import com.example.android.architecture.blueprints.todoapp.statistics.StatisticsActivity;
 import com.example.android.architecture.blueprints.todoapp.util.ActivityUtils;
 import com.example.android.architecture.blueprints.todoapp.util.EspressoIdlingResource;
-import com.facebook.litho.ComponentContext;
-import com.facebook.litho.LithoView;
-import com.facebook.litho.widget.Text;
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -48,19 +45,6 @@ public class TasksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ComponentContext c = new ComponentContext(this);
-
-        final LithoView lithoView = LithoView.create(
-            this /* context */,
-            Text.create(c)
-                .text("Hello, World!")
-                .textSizeDip(50)
-                .build());
-
-        setContentView(lithoView);
-        if (true) { // to exit early without the compiler complaining about unreachable statements
-            return;
-        }
         setContentView(R.layout.tasks_act);
 
         // Set up the toolbar.
